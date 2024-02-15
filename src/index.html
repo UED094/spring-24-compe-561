@@ -5,21 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Budget Buddy</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="support.html">Support</a></li>
+        <nav class="nav">
+            <ul class="navbar">
+                <li class="navbar-item"><a class="navbar-link" href="index.html">Home</a></li>
+                <li class="navbar-item"><a class="navbar-link" href="about.html">About</a></li>
+                <li class="navbar-item"><a class="navbar-link" href="support.html">Support</a></li>
             </ul>
         </nav>
-        <h1>Budget Buddy</h1>
+        <h2>Budget Buddy</h2>
     </header>
 
-    <main>
+    <main class="container">
         <section>
             <div>
                 <h4> Your Balance</h4>
@@ -29,14 +30,14 @@
 
 
         <section>
-            <div>
+            <div class="inc-exp-container">
                 <div>
                     <h4>Income</h4>
-                    <h1 id="money-plus"> $0.00</h1>
+                    <h1 id="money-plus" class="money plus"> +$0.00</h1>
                 </div>
                 <div>
                     <h4>Expense</h4>
-                    <h1 id="money-minus"> $0.00</h1>
+                    <h1 id="money-minus" class="money minus"> -$0.00</h1>
                 </div>
             </div>
         </section>
@@ -44,11 +45,11 @@
 
         <section>
             <h3> History</h3>
-            <ul id="list">
-                <li> Cash <span> -400</span> <button> X </button></li>
-                <li> Cash <span> -400</span> <button> X </button></li>
-                <li> Cash <span> -400</span> <button> X </button></li>
-                <li> Cash <span> -400</span> <button> X </button></li>
+            <ul id="list" class="list">
+                <li class="minus"> Cash <span> -400</span> <button class="delete-btn"> X </button></li>
+                <li class="plus"> Gas <span> +500</span> <button class="delete-btn"> X </button></li>
+                <li class="minus"> Grocery <span> -900</span> <button class="delete-btn"> X </button></li>
+                <li class="plus"> Tips <span> +1000</span> <button class="delete-btn"> X </button></li>
 
             </ul>
         </section>
@@ -70,7 +71,7 @@
                 </div>
             </form>
 
-            <button> Add Transaction</button>
+            <button class="btn"> Add Transaction</button>
         </section>
     </main>
 
