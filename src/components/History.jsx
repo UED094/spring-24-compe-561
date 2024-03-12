@@ -1,4 +1,9 @@
+import Transaction from "./Transaction";
+import { useContext } from "react";
+import { TransactionContext } from "../context/TransactionContext";
+
 const History = () => {
+	const { transactions } = useContext(TransactionContext);
 	return (
 		<>
 			<h3> History</h3>
@@ -6,18 +11,15 @@ const History = () => {
 				className="list"
 				id="list"
 			>
-				<li className="minus">
-					{" "}
-					Cash <span> -400 </span>{" "}
-					<button className="delete-btn">X</button>
-				</li>
-				<li className="plus">
-					{" "}
-					Cash <span> 500 </span>{" "}
-					<button className="delete-btn">X</button>
-				</li>
+				{transactions.map((transaction) => (
+					<Transaction
+						key={transaction.id}
+						transaction={transaction}
+					/>
+				))}
 			</ul>
 		</>
 	);
 };
+
 export default History;

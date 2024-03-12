@@ -1,9 +1,35 @@
+import { useContext } from "react";
+import { TransactionContext } from "../context/TransactionContext";
+
 const AddTransaction = () => {
+	const { transactions, addTransaction } = useContext(TransactionContext);
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		const description = e.target.description.value;
+		const amount = e.target.amount.value;
+		const id = transactions.length + 1;
+		const newTransaction = {
+			id,
+			description,
+			amount: +amount,
+		};
+
+		addTransaction(newTransaction);
+
+		// updateLocalStorage("transactions", [...transactions, newTransaction]);
+
+		e.target.description.value = "";
+		e.target.amount.value = "";
+	};
+
 	return (
 		<>
 			<h3> Add new transaction</h3>
 
-			<form id="form">
+			<form
+				id="form"
+				onSubmit={handleSubmit}
+			>
 				<div className="form-control">
 					<label htmlFor="description"> Description</label>
 					<input
@@ -28,4 +54,5 @@ const AddTransaction = () => {
 		</>
 	);
 };
+
 export default AddTransaction;
