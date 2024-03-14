@@ -16,8 +16,6 @@ const AddTransaction = () => {
 
 		addTransaction(newTransaction);
 
-		// updateLocalStorage("transactions", [...transactions, newTransaction]);
-
 		e.target.description.value = "";
 		e.target.amount.value = "";
 	};
