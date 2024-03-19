@@ -17,8 +17,18 @@ export const TransactionProvider = ({ children }) => {
 		updateLocalStorage("transactions", updatedTransactions);
 	};
 
+	const deleteTransaction = (id) => {
+		const updatedTransactions = transactions.filter(
+			(transaction) => transaction.id !== id
+		);
+		setTransactions(updatedTransactions);
+		updateLocalStorage("transactions", updatedTransactions);
+	};
+
 	return (
-		<TransactionContext.Provider value={{ transactions, addTransaction }}>
+		<TransactionContext.Provider
+			value={{ transactions, addTransaction, deleteTransaction }}
+		>
 			{children}
 		</TransactionContext.Provider>
 	);

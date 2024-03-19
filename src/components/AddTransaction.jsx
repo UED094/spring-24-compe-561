@@ -1,13 +1,15 @@
 import { useContext } from "react";
 import { TransactionContext } from "../context/TransactionContext";
+import { v4 as uuidv4 } from "uuid";
 
 const AddTransaction = () => {
-	const { transactions, addTransaction } = useContext(TransactionContext);
+	const { addTransaction } = useContext(TransactionContext);
+	
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const description = e.target.description.value;
 		const amount = e.target.amount.value;
-		const id = transactions.length + 1;
+		const id = uuidv4();
 		const newTransaction = {
 			id,
 			description,

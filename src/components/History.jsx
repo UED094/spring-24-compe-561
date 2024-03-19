@@ -4,6 +4,8 @@ import { TransactionContext } from "../context/TransactionContext";
 
 const History = () => {
 	const { transactions } = useContext(TransactionContext);
+
+	console.log("transactions", transactions);
 	return (
 		<>
 			<h3> History</h3>

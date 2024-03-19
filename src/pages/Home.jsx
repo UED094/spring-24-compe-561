@@ -1,4 +1,3 @@
-import Navbar from "../components/Navbar";
 import Balance from "../components/Balance";
 import IncomeExpense from "../components/IncomeExpense";
 import History from "../components/History";
@@ -9,7 +8,6 @@ const Home = () => {
 	return (
 		<>
 			<TransactionProvider>
-				<Navbar />
 				<div className="container">
 					<Balance />
 					<IncomeExpense />
