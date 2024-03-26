@@ -1,9 +1,22 @@
 import { useContext } from "react";
 import { TransactionContext } from "../context/TransactionContext";
 import { moneyFormatter } from "../utils/formatter";
-
+import { useEffect, useState } from "react";
 const IncomeExpense = () => {
-	const { transactions } = useContext(TransactionContext);
+	// const { transactions } = useContext(TransactionContext);
+
+	const [transactions, setTransactions] = useState([]);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const response = await fetch("http://localhost:5001/transactions");
+			const data = await response.json();
+
+			setTransactions(data);
+		};
+
+		fetchData();
+	}, []);
 
 	const amounts = transactions.map((transaction) => transaction.amount);
 
