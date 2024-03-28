@@ -3,11 +3,14 @@
 {% block title %}Transaction Detail{% endblock %}
 
 {% block content %}
-<h1>{{ transaction.id }}</h1>
+<div class="mycard">
+    <h1>{{ transaction.id }}</h1>
 
-<p>Amount : {{ transaction.amount }}</p>
-<p>description: {{ transaction.description }}</p>
+    <p>Amount : {{ transaction.amount }}</p>
+    <p>description: {{ transaction.description }}</p>
 
-<p>Back to <a href="/transactions">Transactions</a></p>
+    <p>Back to <a href="/transactions">Transactions</a></p>
+</div>
+
 
 {% endblock %}
