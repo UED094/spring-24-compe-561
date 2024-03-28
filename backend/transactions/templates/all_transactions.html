@@ -1,0 +1,17 @@
+{% extends 'master.html' %}
+
+{% block title %}Transactions{% endblock %}
+
+
+{% block content %}
+<p><a href="/">HOME</a></p>
+
+<h1>Transactions</h1>
+
+<ul>
+    {% for x in transactions %}
+    <li><a href="details/{{ x.id }}">{{ x.description }} : {{ x.amount }}</a></li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
