@@ -1,14 +1,12 @@
 import { moneyFormatter } from "../utils/formatter";
-import useTransactionContext from "../hooks/useTransactionContext";
+import { API_URL } from "../utils/constants";
 import { useEffect, useState } from "react";
 const Balance = () => {
-	// const { transactions } = useTransactionContext();
-
 	const [transactions, setTransactions] = useState([]);
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const response = await fetch("http://localhost:5001/transactions");
+			const response = await fetch(`${API_URL}/transactions`);
 			const data = await response.json();
 
 			setTransactions(data);
@@ -17,7 +15,7 @@ const Balance = () => {
 		fetchData();
 	}, []);
 
-	const amounts = transactions.map((transaction) => transaction.amount);
+	const amounts = transactions.map((transaction) => +transaction.amount);
 	const total = amounts.reduce((acc, item) => (acc += item), 0).toFixed(2);
 	const totalBalance = total;
 	// const totalBalance = "0.00";

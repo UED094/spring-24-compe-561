@@ -1,6 +1,6 @@
 import Transaction from "./Transaction";
-import { useContext, useState } from "react";
-import { TransactionContext } from "../context/TransactionContext";
+import { useState } from "react";
+import { API_URL } from "../utils/constants";
 import { useEffect } from "react";
 
 const History = () => {
@@ -10,8 +10,10 @@ const History = () => {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const response = await fetch("http://localhost:5001/transactions");
+			const response = await fetch(`${API_URL}/transactions/`);
 			const data = await response.json();
+
+			console.log(data);
 
 			setTransactions(data);
 		};

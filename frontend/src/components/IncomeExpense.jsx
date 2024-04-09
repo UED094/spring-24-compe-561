@@ -1,6 +1,5 @@
-import { useContext } from "react";
-import { TransactionContext } from "../context/TransactionContext";
 import { moneyFormatter } from "../utils/formatter";
+import { API_URL } from "../utils/constants";
 import { useEffect, useState } from "react";
 const IncomeExpense = () => {
 	// const { transactions } = useContext(TransactionContext);
@@ -9,7 +8,7 @@ const IncomeExpense = () => {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const response = await fetch("http://localhost:5001/transactions");
+			const response = await fetch(`${API_URL}/transactions`);
 			const data = await response.json();
 
 			setTransactions(data);
@@ -18,7 +17,7 @@ const IncomeExpense = () => {
 		fetchData();
 	}, []);
 
-	const amounts = transactions.map((transaction) => transaction.amount);
+	const amounts = transactions.map((transaction) => +transaction.amount);
 
 	const income = amounts
 		.filter((item) => item > 0)
