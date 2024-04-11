@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useAddTransaction } from '../hooks/useAddTransaction';
 
 const AddTransaction = () => {
-    const { mutate: addTransaction } = useAddTransaction();
+    const { mutate: addTransaction, isPending } = useAddTransaction();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -45,7 +45,9 @@ const AddTransaction = () => {
                     />
                 </div>
 
-                <button className="btn"> Add Transaction</button>
+                <button className="btn" disabled={isPending}>
+                    {isPending ? 'Adding Transaction' : 'Add Transaction'}
+                </button>
             </form>
         </>
     );

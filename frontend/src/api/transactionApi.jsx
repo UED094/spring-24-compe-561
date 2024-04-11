@@ -19,6 +19,8 @@ export const addTransaction = async (newTransaction) => {
     });
 
     const data = await response.json();
+    await new Promise((resolve) => setTimeout(resolve, 4000));
+
     return data;
 };
 

@@ -13,10 +13,10 @@ const Balance = () => {
     const totalBalance = getTotalBalance(transactions);
 
     return (
-        <>
+        <div style={{ textAlign: 'center' }}>
             <h4> Your Balance</h4>
             <h1 id="balance"> {moneyFormatter(totalBalance)}</h1>
-        </>
+        </div>
     );
 };
 
