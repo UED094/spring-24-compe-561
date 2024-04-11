@@ -1,54 +1,31 @@
-import { moneyFormatter } from "../utils/formatter";
-import { API_URL } from "../utils/constants";
-import { useEffect, useState } from "react";
+import { useGetTransactions } from '../hooks/useGetTransactions';
+import { calculateIncomeExpense } from '../utils/helpers';
+
 const IncomeExpense = () => {
-	// const { transactions } = useContext(TransactionContext);
+    const { data: transactions, error, isLoading } = useGetTransactions();
 
-	const [transactions, setTransactions] = useState([]);
+    if (isLoading) return <p>Loading...</p>;
 
-	useEffect(() => {
-		const fetchData = async () => {
-			const response = await fetch(`${API_URL}/transactions`);
-			const data = await response.json();
+    if (error) return <p>Some error happened</p>;
 
-			setTransactions(data);
-		};
+    const { formattedIncome: income, formattedExpense: expense } =
+        calculateIncomeExpense(transactions);
 
-		fetchData();
-	}, []);
-
-	const amounts = transactions.map((transaction) => +transaction.amount);
-
-	const income = amounts
-		.filter((item) => item > 0)
-		.reduce((acc, item) => (acc += item), 0);
-
-	const expense =
-		amounts
-			.filter((item) => item < 0)
-			.reduce((acc, item) => (acc += item), 0) * -1;
-
-	return (
-		<div className="inc-exp-container">
-			<div>
-				<h4>Income</h4>
-				<p
-					className="money plus"
-					id="money-plus"
-				>
-					{moneyFormatter(income)}
-				</p>
-			</div>
-			<div>
-				<h4>Expense</h4>
-				<p
-					className="money minus"
-					id="money-minus"
-				>
-					{moneyFormatter(expense)}
-				</p>
-			</div>
-		</div>
-	);
+    return (
+        <div className="inc-exp-container">
+            <div>
+                <h4>Income</h4>
+                <p className="money plus" id="money-plus">
+                    {income}
+                </p>
+            </div>
+            <div>
+                <h4>Expense</h4>
+                <p className="money minus" id="money-minus">
+                    {expense}
+                </p>
+            </div>
+        </div>
+    );
 };
 export default IncomeExpense;

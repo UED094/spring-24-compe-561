@@ -1,31 +1,23 @@
-import { moneyFormatter } from "../utils/formatter";
-import { API_URL } from "../utils/constants";
-import { useEffect, useState } from "react";
+import { moneyFormatter } from '../utils/formatter';
+
+import { useGetTransactions } from '../hooks/useGetTransactions';
+import { getTotalBalance } from '../utils/helpers';
+
 const Balance = () => {
-	const [transactions, setTransactions] = useState([]);
+    const { data: transactions, error, isLoading } = useGetTransactions();
 
-	useEffect(() => {
-		const fetchData = async () => {
-			const response = await fetch(`${API_URL}/transactions`);
-			const data = await response.json();
+    if (isLoading) return <p>Loading...</p>;
 
-			setTransactions(data);
-		};
+    if (error) return <p>Some Error happened </p>;
 
-		fetchData();
-	}, []);
+    const totalBalance = getTotalBalance(transactions);
 
-	const amounts = transactions.map((transaction) => +transaction.amount);
-	const total = amounts.reduce((acc, item) => (acc += item), 0).toFixed(2);
-	const totalBalance = total;
-	// const totalBalance = "0.00";
-
-	return (
-		<>
-			<h4> Your Balance</h4>
-			<h1 id="balance"> {moneyFormatter(totalBalance)}</h1>
-		</>
-	);
+    return (
+        <>
+            <h4> Your Balance</h4>
+            <h1 id="balance"> {moneyFormatter(totalBalance)}</h1>
+        </>
+    );
 };
 
 export default Balance;
